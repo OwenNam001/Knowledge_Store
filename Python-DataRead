@@ -25,7 +25,7 @@ with open(csvpath, encoding='UTF-8') as csvfile:
           "sick_hours_allowed": int(row[3]),
           "sick_hours_taken": int(row[4])
       }  
-      pto_hours_list.append(employee_data)     =====> https://https://github.com/OwenNam001/Knowledge_Store/edit/main/Python-DataRead.html pto_hours_list 를 사용하는 방법은 Python-ReadData-Use를 본다.
+      pto_hours_list.append(employee_data)     =====> https://github.com/OwenNam001/Knowledge_Store/edit/main/Python-DataRead.html pto_hours_list 를 사용하는 방법은 Python-ReadData-Use를 본다.
 
      Ex) pto_hours_list 의 결과
     {'employeeID': '79227', 'pto_hours_allowed': 160, 'pto_hours_taken': 56, 'sick_hours_allowed': 0, 'sick_hours_taken': 0}
