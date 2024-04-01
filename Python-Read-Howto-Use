@@ -16,7 +16,7 @@
     {'employeeID': '79151', 'pto_hours_allowed': 120, 'pto_hours_taken': 100, 'sick_hours_allowed': 40, 'sick_hours_taken': 0}
 
 
-1. pto_hours_list에 저장된 데이터를 each row 돌면서 row["컬럼명"] 으로 해당 데이터를 access한다.
+1) pto_hours_list에 저장된 데이터를 each row 돌면서 row["컬럼명"] 으로 해당 데이터를 access한다.
 for row in pto_hours_list:
     row_index = pto_hours_list.index(row)
     employee_id = row["employeeID"]
@@ -25,7 +25,7 @@ for row in pto_hours_list:
 
     print(f"{row_index} {employee_id} {pto_hours_allowed} {pto_hours_taken}")
 
-2. pto_hours_list List를 DataFrame으로 변환후 for loop를 하지 않고 전체 데이터에 대해서 바로 분석함수를 쓸 수 있다.
+2) pto_hours_list List를 DataFrame으로 변환후 for loop를 하지 않고 전체 데이터에 대해서 바로 분석함수를 쓸 수 있다.
 
 # 리스트를 DataFrame으로 변환
 data_file_df = pd.DataFrame(pto_hours_list)
