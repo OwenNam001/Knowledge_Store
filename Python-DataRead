@@ -19,11 +19,11 @@ with open(csvpath, encoding='UTF-8') as csvfile:
       pto_hours_list = []                    
       employee_data = {
           # Key : value
-          "employeeID": row[0],
-          "pto_hours_allowed": int(row[1]),
-          "pto_hours_taken": int(row[2]),
-          "sick_hours_allowed": int(row[3]),
-          "sick_hours_taken": int(row[4])
+          "employeeID": current_row[0],
+          "pto_hours_allowed": int(current_row[1]),
+          "pto_hours_taken": int(current_row[2]),
+          "sick_hours_allowed": int(current_row[3]),
+          "sick_hours_taken": int(current_row[4])
       }  
       pto_hours_list.append(employee_data)     =====> https://github.com/OwenNam001/Knowledge_Store/edit/main/Python-DataRead.html pto_hours_list 를 사용하는 방법은 Python-ReadData-Use를 본다.
 
