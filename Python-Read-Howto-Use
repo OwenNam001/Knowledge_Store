@@ -38,3 +38,14 @@ print(data_file_df["sick_hours_allowed"].sum())     <------------ sick_hours_all
 print(data_file_df["employeeID"].unique())     <------------ employeeID Column의 unique 항목을 List로 표현
 print(data_file_df["Gender"].value_counts()) <------- Gender, count(*) group by Gender
 
+
+<< 3. cvs 파일을 읽으면서 for loop를 돌지 않고 바로 DataFrame으로 전체 테이블을 담는다. >>
+생성된 DataFrame을 이용해서 for loop를 돌지 않고 전체 데이터에 대해서 바로 분석함수를 쓸 수 있다.
+
+print(data_file_df.head(20))              <------------ 테이블 전체 column을 20개 row만
+print(data_file_df["pto_hours_allowed"].head(10))  <------------ 테이블중 하나의 "pto_hours_allowed" column만 10개 row 출력, [] 1개
+print(data_file_df[["employeeID", "pto_hours_allowed", "pto_hours_taken"]].head(20))    <------------ 테이블중 "employeeID", "pto_hours_taken" column만 20개 row출력, [] 2개
+print(data_file_df["sick_hours_allowed"].mean())    <------------ sick_hours_allowed Column의 Average
+print(data_file_df["sick_hours_allowed"].sum())     <------------ sick_hours_allowed Column의 sum
+print(data_file_df["employeeID"].unique())     <------------ employeeID Column의 unique 항목을 List로 표현
+print(data_file_df["Gender"].value_counts()) <------- Gender, count(*) group by Gender
