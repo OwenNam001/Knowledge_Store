@@ -1,0 +1,40 @@
+<< 2. each row를 multi-pair dictionary  {column name : value} 에 담아 List에 append하여 전체 테이블을 담은 경우 >>
+      pto_hours_list = []                    
+      employee_data = {
+          # Key : value
+          "employeeID": row[0],
+          "pto_hours_allowed": int(row[1]),
+          "pto_hours_taken": int(row[2]),
+          "sick_hours_allowed": int(row[3]),
+          "sick_hours_taken": int(row[4])
+      }  
+      pto_hours_list.append(employee_data)
+
+    Ex) pto_hours_list 의 결과
+    {'employeeID': '79227', 'pto_hours_allowed': 160, 'pto_hours_taken': 56, 'sick_hours_allowed': 0, 'sick_hours_taken': 0},
+    {'employeeID': '79189', 'pto_hours_allowed': 160, 'pto_hours_taken': 28, 'sick_hours_allowed': 40, 'sick_hours_taken': 8},
+    {'employeeID': '79151', 'pto_hours_allowed': 120, 'pto_hours_taken': 100, 'sick_hours_allowed': 40, 'sick_hours_taken': 0}
+
+
+1. pto_hours_list에 저장된 데이터를 each row 돌면서 row["컬럼명"] 으로 해당 데이터를 access한다.
+for row in pto_hours_list:
+    row_index = pto_hours_list.index(row)
+    employee_id = row["employeeID"]
+    pto_hours_allowed = row["pto_hours_allowed"]
+    pto_hours_taken = row["pto_hours_taken"]
+
+    print(f"{row_index} {employee_id} {pto_hours_allowed} {pto_hours_taken}")
+
+2. pto_hours_list List를 DataFrame으로 변환후 for loop를 하지 않고 전체 데이터에 대해서 바로 분석함수를 쓸 수 있다.
+
+# 리스트를 DataFrame으로 변환
+data_file_df = pd.DataFrame(pto_hours_list)
+
+print(data_file_df.head(20))              <------------ 테이블 전체 column을 20개 row만
+print(data_file_df["pto_hours_allowed"].head(10))  <------------ 테이블중 하나의 "pto_hours_allowed" column만 10개 row 출력, [] 1개
+print(data_file_df[["employeeID", "pto_hours_allowed", "pto_hours_taken"]].head(20))    <------------ 테이블중 "employeeID", "pto_hours_taken" column만 20개 row출력, [] 2개
+print(data_file_df["sick_hours_allowed"].mean())    <------------ sick_hours_allowed Column의 Average
+print(data_file_df["sick_hours_allowed"].sum())     <------------ sick_hours_allowed Column의 sum
+print(data_file_df["employeeID"].unique())     <------------ employeeID Column의 unique 항목을 List로 표현
+print(data_file_df["Gender"].value_counts()) <------- Gender, count(*) group by Gender
+
