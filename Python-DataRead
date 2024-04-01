@@ -10,12 +10,12 @@ with open(csvpath, encoding='UTF-8') as csvfile:
   csv_header = next(csvreader)  # skip first row, skip header    # Read the header row first (skip this step if there is no header)
    
   for current_row in csvreader:                                  # Read each row of data after the header
-      # 1. each row를 읽으면서 데이터를 변수에 담고 간단한 계산은 바로 할 수 있다.
+# 1. each row를 읽으면서 데이터를 변수에 담고 간단한 계산은 바로 할 수 있다.
       employee_id = str(current_row[0])
       pto_hours_allowed = int(current_row[1])
       pto_hours_taken = int(current_row[2])    
   
-      # 2. each row를 multi-pair dictionary  {column name : value} 에 담아 List에 append하여 전체 테이블을 담는다.
+# 2. each row를 multi-pair dictionary  {column name : value} 에 담아 List에 append하여 전체 테이블을 담는다.
       pto_hours_list = []                    
       employee_data = {
           # Key : value
@@ -25,11 +25,18 @@ with open(csvpath, encoding='UTF-8') as csvfile:
           "sick_hours_allowed": int(current_row[3]),
           "sick_hours_taken": int(current_row[4])
       }  
-      pto_hours_list.append(employee_data)     =====> https://github.com/OwenNam001/Knowledge_Store/edit/main/Python-DataRead.html pto_hours_list 를 사용하는 방법은 Python-ReadData-Use를 본다.
+      pto_hours_list.append(employee_data)     =====> 사용하는 방법은 이것을 본다 https://github.com/OwenNam001/Knowledge_Store/blob/main/Python-Read-Howto-Use
 
      Ex) pto_hours_list 의 결과
     {'employeeID': '79227', 'pto_hours_allowed': 160, 'pto_hours_taken': 56, 'sick_hours_allowed': 0, 'sick_hours_taken': 0},
     {'employeeID': '79189', 'pto_hours_allowed': 160, 'pto_hours_taken': 28, 'sick_hours_allowed': 40, 'sick_hours_taken': 8},
     {'employeeID': '79151', 'pto_hours_allowed': 120, 'pto_hours_taken': 100, 'sick_hours_allowed': 40, 'sick_hours_taken': 0}
 
-     # 3. eac
+# 3. cvs 파일을 읽으면서 for loop를 돌지 않고 바로 DataFrame으로 전체 테이블을 담는다.
+import pandas as pd
+import os
+
+csvpath = os.path.join('..', 'Resources', 'contacts.csv')
+data_file_df  = pd.read_csv(csvpath, encoding='UTF-8')                          # CSV 파일을 directly DataFrame으로 불러오기 
+
+=====> 사용하는 방법은 이것을 본다 https://github.com/OwenNam001/Knowledge_Store/blob/main/Python-Read-Howto-Use
