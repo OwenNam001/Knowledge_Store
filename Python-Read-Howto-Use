@@ -1,5 +1,5 @@
 << 2. each row를 읽으면서 current_row[2] candidate_name을 유니크하게 만들면서 건수를 Single pair dictionary를 생성 >>
-Single pair dictionary는 for loop을 돌면서 each row를 access한다.
+Single key & values pair dictionary는 for loop을 돌면서 each row를 access한다.
 아래에서 {candidate}는 key값인 "Diana DeGette", {candidates[candidate]}는 value인 건수를 보여준다.
 
 for candidate in candidates:    
