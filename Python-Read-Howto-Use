@@ -1,4 +1,17 @@
-<< 2. each row를 multi-pair dictionary  {column name : value} 에 담아 List에 append하여 전체 테이블을 담은 경우 >>
+<< 2. each row를 읽으면서 current_row[2] candidate_name을 유니크하게 만들면서 건수를 Single pair dictionary를 생성 >>
+Single pair dictionary는 for loop을 돌면서 each row를 access한다.
+아래에서 {candidate}는 key값인 "Diana DeGette", {candidates[candidate]}는 value인 건수를 보여준다.
+
+for candidate in candidates:    
+    candidate_name = candidate
+    candiatae_cnt = candidates[candidate]      
+
+Ex) candidates dictionary의 결과
+Charles Casper Stockham: 85213
+Diana DeGette: 272892
+Raymon Anthony Doane: 11606
+
+<< 3. each row를 multi-pair dictionary  {column name : value} 에 담아 List에 append하여 전체 테이블을 담은 경우 >>
       pto_hours_list = []                    
       employee_data = {
           # Key : value
@@ -39,7 +52,7 @@ print(data_file_df["employeeID"].unique())     <------------ employeeID Column�
 print(data_file_df["Gender"].value_counts()) <------- Gender, count(*) group by Gender
 
 
-<< 3. cvs 파일을 읽으면서 for loop를 돌지 않고 바로 DataFrame으로 전체 테이블을 담는다. >>
+<< 4. cvs 파일을 읽으면서 for loop를 돌지 않고 바로 DataFrame으로 전체 테이블을 담는다. >>
 생성된 DataFrame을 이용해서 for loop를 돌지 않고 전체 데이터에 대해서 바로 분석함수를 쓸 수 있다.
 
 print(data_file_df.head(20))              <------------ 테이블 전체 column을 20개 row만
