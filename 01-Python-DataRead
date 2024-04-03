@@ -58,7 +58,9 @@ import pandas as pd
 from pathlib import Path
 file = Path("Resources/threatened_species.csv")
 original_df = pd.read_csv(file)
-original_df()
+original_df.sample(10)
+original_df.head(10)
+original_df.tail(10)
 
 =====> 사용하는 방법은 이것을 본다 https://github.com/OwenNam001/Knowledge_Store/blob/main/Python-Read-Howto-Use
 
