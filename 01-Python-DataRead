@@ -46,12 +46,19 @@ Raymon Anthony Doane: 11606
     {'employeeID': '79189', 'pto_hours_allowed': 160, 'pto_hours_taken': 28, 'sick_hours_allowed': 40, 'sick_hours_taken': 8},
     {'employeeID': '79151', 'pto_hours_allowed': 120, 'pto_hours_taken': 100, 'sick_hours_allowed': 40, 'sick_hours_taken': 0}
 
-# 4. cvs 파일을 읽으면서 for loop를 돌지 않고 바로 DataFrame으로 전체 테이블을 담는다.
+# 4-1. cvs 파일을 읽으면서 for loop를 돌지 않고 바로 DataFrame으로 전체 테이블을 담는다.
 import pandas as pd
 import os
 
 csvpath = os.path.join('..', 'Resources', 'contacts.csv')
 data_file_df  = pd.read_csv(csvpath, encoding='UTF-8')                          # CSV 파일을 directly DataFrame으로 불러오기 
+
+# 4-2. cvs 파일을 읽으면서 for loop를 돌지 않고 바로 DataFrame으로 전체 테이블을 담는다.
+import pandas as pd
+from pathlib import Path
+file = Path("Resources/threatened_species.csv")
+original_df = pd.read_csv(file)
+original_df()
 
 =====> 사용하는 방법은 이것을 본다 https://github.com/OwenNam001/Knowledge_Store/blob/main/Python-Read-Howto-Use
 
