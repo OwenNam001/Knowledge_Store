@@ -54,3 +54,7 @@ csvpath = os.path.join('..', 'Resources', 'contacts.csv')
 data_file_df  = pd.read_csv(csvpath, encoding='UTF-8')                          # CSV 파일을 directly DataFrame으로 불러오기 
 
 =====> 사용하는 방법은 이것을 본다 https://github.com/OwenNam001/Knowledge_Store/blob/main/Python-Read-Howto-Use
+
+
+# 5. DataFrame을 CSV file로 생성
+comics_ren_df.to_csv("Output/comics.csv", index=False, header=True)
