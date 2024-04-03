@@ -46,3 +46,29 @@ group_one_df.iloc[1:3] ===>                    # Slicing:부분 access
     Name
 1   Tany
 2  Susan
+
+<<-------------- One Dictionary를 List에 담지 않고 바로 DataFrame으로 변환하면 error발생한다.  -------------->>
+summary_df = pd.DataFrame({
+                           "Total Unique Authors": author_count,
+                           "Total Unique Publication Countries": country_count,
+                           "Earliest Year": earliest_year,
+                           "Latest Year": latest_year}                           
+                           )  
+
+해결방법)
+1) List에 담고 DataFrame으로 변환
+summary_df = pd.DataFrame([{
+                           "Total Unique Authors": author_count,
+                           "Total Unique Publication Countries": country_count,
+                           "Earliest Year": earliest_year,
+                           "Latest Year": latest_year}]                           
+                           )  
+
+2) index추가
+summary_df = pd.DataFrame({
+                           "Total Unique Authors": author_count,
+                           "Total Unique Publication Countries": country_count,
+                           "Earliest Year": earliest_year,
+                           "Latest Year": latest_year},
+                            index=[0]
+                           )  
