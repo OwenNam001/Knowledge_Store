@@ -21,3 +21,48 @@ pto_hours_list[2]['pto_hours_allowed'] ===> 120
 2) 02-Python-Read-Howto-Use의 "# 리스트를 DataFrame으로 변환"를 본다.
 
 
+
+
+<<-------------- DataFrame중 하나의 컬럼을 Series로변환 Why? 계산을 가독성있게 편하게 할 수 있다. -------------->>
+1. 반드시 키 컬럼을 지정한다.
+
+data = {
+    'Date': ['2013-10-16', '2013-10-17', '2013-10-18'],
+    'Open': [19.10, 19.15, 19.75],
+    'High': [20.02, 20.15, 20.31],
+    'Low': [18.51, 19.13, 19.62],
+    'Close': [19.26, 20.00, 20.20],
+    'Adj Close': [10.277133, 10.671999, 10.778718],
+    'Volume': [17412400, 1470400, 723500]
+}
+위와 같은 DataFrame이 있을때,
+
+1) Key Column을 지정하지 않을 때
+data_df = pd.DataFrame(data)
+col= data_df["Close"]
+
+"Close" 컬럼을 Series로 지정하면 default로 index가 생긴다.
+
+0    19.26
+1    20.00
+2    20.20
+print(col)
+
+2) Key Column을 지정할때, 이 경우 Date 컬럼을 Key Column으로 지정함. default index는 생기지 않고, Date컬럼이 index로 생긴다.
+data_df.set_index('Date', inplace=True)
+col= data_df["Close"]
+
+Date
+2013-10-16    19.26
+2013-10-17    20.00
+2013-10-18    20.20
+
+col['2013-10-16']     ====> 19.26       #키 값으로 data access가 가능하다. slicing도 가능하다.
+
+
+
+<<-------------- 계산이 끝난 여러 Series들을 DataFrame으로변환 -------------->>
+base, base_norm ===> Pandas Series
+base_df = pd.concat([base, base_norm], axis=1)
+base_df.columns = ['close', 'normalised']                                            # 컬럼 rename 방법1
+base_ren_df = base_df.rename(columns={"Date of publication":"Publication Year"} )    # 컬럼 rename 방법2
