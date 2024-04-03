@@ -1,34 +1,37 @@
+결론 : 
+1. One dimensional Data는 4개의 data type어느 것으로 바꿔도 location과 slicing access가 가능하다.
+2. List와 Dictionary는 for loop를 통해 each data를 access한다.
+3. Series와 DataFrame은 for loop 없이 전체 데이터의 group function을 사용할 수 있다.
+
 <<-------------- One dimensional List. 컬럼명을 변수로, List에는 데이터 value만 담는다. -------------->>
 prices = [48.70, 47.09, 47.65, 48.00, 48.55]  ==> 데이터 값만 들어있다.
-prices[0] ==> 48.70, prices[1] ==> 47.09 등 location으로만 access할 수 있다.
+prices[0] ==> 48.70, prices[1] ==> 47.09     # location으로만 access할 수 있다.
 prices[1:3] ===> [47.09, 47.65]              # Slicing:부분 access
 prices.append(50.09) ===> 데이터 append       
 
 - print(prices) 하면 가로로 출력됨
 - 주로 for loop를 통하여 location number로 Data Access함 : 세로로 출력됨
 
-===> One dimensional List를 single key & value pair Dictionary 로 변환, location번호를 key값으로 변환한다.
-1. location정보가 아닌 내가 만든 key값으로 데이터를 Access할 수 있다.
+===> Single key & value pair Dictionary 로 변환
 prices = [48.70, 47.09, 47.65, 48.00, 48.55]
-prices_dict = {i+1: prices[i]  for i in range(len(prices))}
-prices_dict[1] ===> 48.70
-prices_dict[1:3] ===> 슬라이싱이 불가능하다.    # Slicing:부분 access (X)
+prices_dict = {"prices": [48.70, 47.09, 47.65, 48.00, 48.55]}
+prices_dict['prices'][2] ===> 47.65               # location으로만 access할 수 있다.
+prices_dict['prices'][1:3] ===> [47.09, 47.65]    # Slicing:부분 access
 
-
-===> One dimensional List를 pandas Series로 변환, 컬럼명은 변수로 pandas series에는 value만 담는다.
+===> Pandas Series로 변환, 컬럼명은 변수로 pandas series에는 value만 담는다.
 1. Pandas Series로 바꾸면 for loop를 쓰지 않고 group function을 사용할 수 있다.
 2. for loop를 쓰지 않고 세로로 바로 출력될 수 있다.
 
 prices = [48.70, 47.09, 47.65, 48.00, 48.55] 
 prices_series = pd.Series(prices)
-prices_series[0] ==> 48.70, prices_series[1] ==> 47.09 든 location으로만 access할 수 있다.
-prices_series[1:3] ==>                        # Slicing:부분 access
+prices_series[0] ==> 48.70, prices_series[1] ==> 47.09  #location으로만 access할 수 있다.
+prices_series[1:3] ==>                                  # Slicing:부분 access
 1    47.09
 2    47.65
 
 print(prices_series)  하면 세로로 바로 출력됨
 
-===> One dimensional List를 DataFrame으로 변환, 변환시 column name을 지정할 수 있다. DataFrame은 가로(컬럼명), 세로(location)을 다 가지고 있다.
+===> DataFrame으로 변환, 변환시 column name을 지정할 수 있다. DataFrame은 가로(컬럼명), 세로(location)을 다 가지고 있다.
 1. Pandas DataFrame으로 바꾸면 for loop를 쓰지 않고 group function을 사용할 수 있다.
 2. for loop를 쓰지 않고 세로로 바로 출력될 수 있다.
 3. Pandas Series와의 차이는 컬럼명을 가지고 있다는 것이다.
@@ -36,27 +39,8 @@ print(prices_series)  하면 세로로 바로 출력됨
 group_one = ["Greg", "Tany", "Susan"]
 group_one_df = pd.DataFrame(group_one, columns=['Name'])
 group_one_df['Name'] ===> 세로로 출력
-group_one_df.iloc[0] ===> "Greg" 
+group_one_df.iloc[0] ===> "Greg"               # location으로만 access할 수 있다.
 group_one_df.iloc[1:3] ===>                    # Slicing:부분 access
     Name
 1   Tany
 2  Susan
-
-
-
-<< Single key & value pair Dictionary. 컬럼명을 Key값으로, 데이터는 value로 담는다. >>
-1. Key값에 value 하나인 경우
-latest_price = {"OMF": 48.70,
-                "AAPL": 123.07
-                }
-print(f"{latest_price['AAPL']} {latest_price['OMF']}")  ===> Dictionary['Key값'] 으로 데이터를 access할 수 있다.
-
-2. Key값에 value가 여러개인 경우 (Key값에 value를 list에 담는다.
-latest_price = {"OMF": [48.70, 49.02, 47.98],
-                "AAPL": [123.07, 123.54]
-                }
-
-print(f"{latest_price['AAPL'][0]} {latest_price['OMF'][2]}")  ===> Dictionary['Key값'][index] 로 데이터를 access할 수 있다.
-
-
-
