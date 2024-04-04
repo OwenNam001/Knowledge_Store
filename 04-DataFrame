@@ -41,7 +41,7 @@ item_df["New Column"] = (item_df["columnA"] / item_df["columnB"]) * 100
 
 4. Sorting DataFrame, Sorting을 하고 나서 index를 reset을 해준다.
 << 컬럼의 highest, lowest 순으로 데이터를 보여주고자 할때 쓴다. >>
-item_sorted_df = item_df.sort_values(["ColumnC"], ascending=False)
+item_sorted_df = item_df.sort_values(["ColumnC", "ColumnD"], ascending=False)
 
   # Reset Index
   item_sorted_df = item_sorted_df.reset_index(drop=True)
