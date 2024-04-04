@@ -21,10 +21,12 @@ df.loc[(df["Threatened status"] == "Vulnerable") & (df["Common Name"] == "Southe
 df.loc[(df["Threatened status"] == "Vulnerable") & (df["Common Name"] == "Southern Elephant Seal"), :]
 
 2. DataFrame Join
-1) Inner Join
 # info_df와 item_df 두개의 DataFrame을 customer_id, order_id 컬럼으로 
 pd.merge(info_df, item_df, on=["customer_id", "order_id"], how="inner")     # inner join
 pd.merge(info_df, item_df, on=["customer_id", "order_id"], how="left")      # info_df를 기준으로 left join
 pd.merge(info_df, item_df, on=["customer_id", "order_id"], how="right")     # item_df를 기준으로 right join
 pd.merge(info_df, item_df, on=["customer_id", "order_id"], how="outer")     # 양쪽 full outer join
 
+2. DataFrame Delete rows
+item_df.dropna(how="any", subset=["columnA", "columnB"])   # how="any", columnA나 columnB중 하나라도 "NaN" (NULL)이 있으면 해당 row delete
+item_df.dropna(how="all", subset=["columnA", "columnB"])   # how="all", columnA와 columnB가 모두 "NaN" (NULL)이 있으면 해당 row delete
