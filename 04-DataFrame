@@ -31,6 +31,10 @@ pd.merge(info_df, item_df, on=["customer_id", "order_id"], how="outer")     # �
 2. DataFrame Delete rows
 item_df.dropna(how="any", subset=["columnA", "columnB"])   # how="any", columnA나 columnB중 하나라도 "NaN" (NULL)이 있으면 해당 row delete
 item_df.dropna(how="all", subset=["columnA", "columnB"])   # how="all", columnA와 columnB가 모두 "NaN" (NULL)이 있으면 해당 row delete
+item_df.dropna()                                           # 모든 컬럼을 뒤져 NULL이 하나라도 있으면 해당 row를 delete
+
+2-1. DataFrame Column remove
+del employment_data_df['OCCUP_INDEX']
 
 3. Add Compute column to existing DataFrame
 item_df["New Column"] = (item_df["columnA"] / item_df["columnB"]) * 100
@@ -58,6 +62,9 @@ file_df["PERCENT_NODATA"] = (file_df["PERCENT_NODATA"]*100).map("{:.1f}%".format
 file_df["PERCENT_NOBURDEN"] = (file_df["PERCENT_NOBURDEN"]*100).map("{:.1f}%".format)
 file_df["TOTAL"] = file_df["TOTAL"].map("{:,}".format)
 
+# Change "Postcode" column into integer
+bug_infestations["Postcode"] = bug_infestations["Postcode"].astype("int64")
+
 # First convert to float and to two decimal places, include a dollar sign, and use comma notation
 hosted_in_aus_df["average_donation"] = hosted_in_aus_df["average_donation"].astype(float).map("${:,.2f}".format)
 
@@ -66,3 +73,21 @@ hosted_in_aus_df["average_donation"] = hosted_in_aus_df["average_donation"].asty
 veterans_df["Percentage"] = veterans_df["Percentage"].str.replace("%", "").astype('float')
 veterans_df["Percentage"].mean()
 
+7. DataFrame 컬럼명 rename
+base_df.columns = ['close', 'normalised']                                            # 컬럼 rename 방법1
+base_ren_df = base_df.rename(columns={"Date of publication":"Publication Year"} )    # 컬럼 rename 방법2
+
+8. Date컬럼의 데이터를 datetime64 type으로 바꿔서 year를 추출하는 방법
+# Extract the year from the date
+bugs_df["Filing Date"] = bugs_df["Filing Date"].astype("datetime64")
+bugs_df["Year"] = bugs_df["Filing Date"].dt.year
+
+10. Group by 
+df["LOCAL_GOVERNMENT_NAME"].value_counts()     # select "LOCAL_GOVERNMENT_NAME", count(*) from TAB group by "LOCAL_GOVERNMENT_NAME"
+
+grouped_df = df.groupby(["LOCAL_GOVERNMENT_NAME", "SURFACE"])                   # "LOCAL_GOVERNMENT_NAME", "SURFACE" group by 컬럼을 주고
+grouped_df.count()                                                              # 나머지 컬럼을 전부 count 한다.
+grouped_df[["NUMBER_OF_BINS", "NUMBER_OF_TOILETS", "NUMBER_OF_TABLES"]].sum()   # 세개의 컬럼을 sum 한다. 
+
+lg_toilets = grouped_df["NUMBER_OF_TOILETS"].sum()                              # 각각의 group by 결과를 각각의 Series로 만
+lg_tables = grouped_df["NUMBER_OF_TABLES"].sum()
