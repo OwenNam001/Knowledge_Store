@@ -63,6 +63,7 @@ summary_df = pd.DataFrame([{
                            "Earliest Year": earliest_year,
                            "Latest Year": latest_year}]                           
                            )  
+summary_df.columns = ["Total Unique Authors", "Total Unique Publication Countries", "Earliest Year", "Latest Year"]     
 
 2) index추가
 summary_df = pd.DataFrame({
