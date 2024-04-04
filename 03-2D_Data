@@ -49,6 +49,7 @@ col= data_df["Close"]
 print(col)
 
 2) Key Column을 지정할때, 이 경우 Date 컬럼을 Key Column으로 지정함. default index는 생기지 않고, Date컬럼이 index로 생긴다.
+   Key Column은 unique 할 필요는 없지만, 데이터가 unique하지 않으면 DataFrame.loc method는 error가 발생한다. iloc을 써야 한다.
 data_df.set_index('Date', inplace=True)
 col= data_df["Close"]
 
