@@ -1,0 +1,23 @@
+1. 데이터 Access
+
+df = df.set_index('Species')                        # Species라는 컬럼을 index 컬럼으로 지정함
+df.iloc[3:5]                                        # integer locatin으로 찾음 3 location row (header제외), 5 location column
+df.iloc[3:5, 2], df.iloc[2:4, 0:4]                  # slicing 
+df.iloc[2:, :4]                                     # row: 2 ~ , column: ~ 4
+df.iloc[2:, :"Family"]                              # row: 2 ~ , column: ~ "Family"
+df.iloc[:, 2],                                      # Select all rows for selected columns 
+df.loc[:, "Family"],                                # Select all rows for selected columns 
+df.loc[:, ["Family", "Threatened status"]]          # Select all rows for selected columns 
+
+df["Family"] == "leonina"                           # select "Family", decode("Family", "leonina", True, False) form TAB
+
+df.loc["leonina", "Family"]                         # select "Family" from TAB where Species = "leonina"
+df.loc[df["Threatened status"] == "Vulnerable", :]  # select * from TAB where "Threatened status" = "Vulnerable"
+
+# select * from TAB where "Threatened status" = "Vulnerable" AND "Common Name" = "Southern Elephant Seal"   
+df.loc[(df["Threatened status"] == "Vulnerable") & (df["Common Name"] == "Southern Elephant Seal"), :]
+
+# select * from TAB where "Threatened status" = "Vulnerable" OR "Common Name" = "Southern Elephant Seal"   
+df.loc[(df["Threatened status"] == "Vulnerable") & (df["Common Name"] == "Southern Elephant Seal"), :]
+
+          
