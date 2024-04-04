@@ -13,6 +13,7 @@ df["Family"] == "leonina"                           # select "Family", decode("F
 
 df.loc["leonina", "Family"]                         # select "Family" from TAB where Species = "leonina"
 df.loc[df["Threatened status"] == "Vulnerable", :]  # select * from TAB where "Threatened status" = "Vulnerable"
+df.loc[df["GDP Values"] > 10000, :]                 # select * from TAB where "GDP Values" > 10000
 
 # select * from TAB where "Threatened status" = "Vulnerable" AND "Common Name" = "Southern Elephant Seal"   
 df.loc[(df["Threatened status"] == "Vulnerable") & (df["Common Name"] == "Southern Elephant Seal"), :]
