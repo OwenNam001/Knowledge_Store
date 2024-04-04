@@ -12,8 +12,8 @@ df.loc[:, ["Family", "Threatened status"]]          # Select all rows for select
 df["Family"] == "leonina"                           # select "Family", decode("Family", "leonina", True, False) form TAB
 
 df.loc["leonina", "Family"]                         # select "Family" from TAB where Species = "leonina"
-df.loc[df["Threatened status"] == "Vulnerable", :]  # select * from TAB where "Threatened status" = "Vulnerable"
-df.loc[df["GDP Values"] > 10000, :]                 # select * from TAB where "GDP Values" > 10000
+df.loc[(df["Threatened status"] == "Vulnerable"), :]  # select * from TAB where "Threatened status" = "Vulnerable"
+df.loc[(df["GDP Values"] > 10000), :]                 # select * from TAB where "GDP Values" > 10000
 
 # select * from TAB where "Threatened status" = "Vulnerable" AND "Common Name" = "Southern Elephant Seal"   
 df.loc[(df["Threatened status"] == "Vulnerable") & (df["Common Name"] == "Southern Elephant Seal"), :]
@@ -31,3 +31,38 @@ pd.merge(info_df, item_df, on=["customer_id", "order_id"], how="outer")     # �
 2. DataFrame Delete rows
 item_df.dropna(how="any", subset=["columnA", "columnB"])   # how="any", columnA나 columnB중 하나라도 "NaN" (NULL)이 있으면 해당 row delete
 item_df.dropna(how="all", subset=["columnA", "columnB"])   # how="all", columnA와 columnB가 모두 "NaN" (NULL)이 있으면 해당 row delete
+
+3. Add Compute column to existing DataFrame
+item_df["New Column"] = (item_df["columnA"] / item_df["columnB"]) * 100
+
+4. Sorting DataFrame, Sorting을 하고 나서 index를 reset을 해준다.
+<< 컬럼의 highest, lowest 순으로 데이터를 보여주고자 할때 쓴다. >>
+item_sorted_df = item_df.sort_values(["ColumnC"], ascending=False)
+
+  # Reset Index
+  item_sorted_df = item_sorted_df.reset_index(drop=True)
+
+5. Data를 categorize하기
+bins = [0, 60, 70, 80, 90, 100]          # Category boundary 값 지정
+group_names = ["F", "D", "C", "B", "A"]  # 표시 lavel 지정
+
+df["Score Summary"] = pd.cut(df["Test Score"], bins, labels=group_names, right=False)  #right=False : include left edge, exclude right edge
+
+6. DataFrame Column format변경
+file_df["INCOME"] = file_df["INCOME"].map("${:,.2f}".format)
+file_df["COSTS"] = file_df["COSTS"].map("${:,.2f}".format)
+file_df["PERCENT30"] = (file_df["PERCENT30"]*100).map("{:.1f}%".format)
+file_df["PERCENT3050"] = (file_df["PERCENT3050"]*100).map("{:.1f}%".format)
+file_df["PERCENT50"] = (file_df["PERCENT50"]*100).map("{:.1f}%".format)
+file_df["PERCENT_NODATA"] = (file_df["PERCENT_NODATA"]*100).map("{:.1f}%".format)
+file_df["PERCENT_NOBURDEN"] = (file_df["PERCENT_NOBURDEN"]*100).map("{:.1f}%".format)
+file_df["TOTAL"] = file_df["TOTAL"].map("{:,}".format)
+
+# First convert to float and to two decimal places, include a dollar sign, and use comma notation
+hosted_in_aus_df["average_donation"] = hosted_in_aus_df["average_donation"].astype(float).map("${:,.2f}".format)
+
+%가 들어있는 데이터에서 mean()을 하면 에러가 발생하므로 %를 지우고 float로 바꿔서 mean을 구하는 방법
+# Converting the "Percentage" column to floats
+veterans_df["Percentage"] = veterans_df["Percentage"].str.replace("%", "").astype('float')
+veterans_df["Percentage"].mean()
+
