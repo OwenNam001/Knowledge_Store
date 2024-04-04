@@ -3,6 +3,7 @@
 df.iloc[3:5]                                        # integer locatin으로 찾음 3 location row (header제외), 5 location column
 df.iloc[3:5, 2], df.iloc[2:4, 0:4]                  # slicing 
 df.iloc[2:, :4]                                     # row: 2 ~ , column: ~ 4
+df.iloc[2:, [0,2,4]]                                # row: 2 ~ , column: 0,2,4
 df.iloc[2:, :"Family"]                              # row: 2 ~ , column: ~ "Family"
 df.iloc[:, 2],                                      # Select all rows for selected columns 
 df.loc[:, "Family"],                                # Select all rows for selected columns 
