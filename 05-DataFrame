@@ -43,7 +43,7 @@ del employment_data_df['OCCUP_INDEX']
 3. Add Compute column to existing DataFrame
 item_df["New Column"] = (item_df["columnA"] / item_df["columnB"]) * 100
 
-4. Sorting DataFrame, Sorting을 하고 나서 index를 reset을 해준다.
+4. Sorting DataFrame, Sorting을 하고 나서 index를 reset을 해준다. default ascending
 << 컬럼의 highest, lowest 순으로 데이터를 보여주고자 할때 쓴다. >>
 item_sorted_df = item_df.sort_values(["ColumnC", "ColumnD"], ascending=False)
 
