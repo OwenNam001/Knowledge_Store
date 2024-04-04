@@ -34,6 +34,9 @@ item_df.dropna(how="any", subset=["columnA", "columnB"])   # how="any", columnA�
 item_df.dropna(how="all", subset=["columnA", "columnB"])   # how="all", columnA와 columnB가 모두 "NaN" (NULL)이 있으면 해당 row delete
 item_df.dropna()                                           # 모든 컬럼을 뒤져 NULL이 하나라도 있으면 해당 row를 delete
 
+2-0. null값을 특정 단어로 채움
+road_stops_reduced.fillna({"SURFACE_TYPE": "Unknown"})
+
 2-1. DataFrame Column remove
 del employment_data_df['OCCUP_INDEX']
 
