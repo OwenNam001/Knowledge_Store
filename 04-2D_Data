@@ -24,7 +24,7 @@ pto_hours_list[2]['pto_hours_allowed'] ===> 120
 <<-------------- DataFrame중 컬럼들을 여러 Aggregate function값으로 scalar 변수에 담고 결과들을 DataFrame으로 다시 변환  -------------->>
 school_count = school_data["School ID"].count()
 student_count = student_data["Student ID"].count()
-passing_maths_count = school_data_complete[(school_data_complete["maths_score"] >= 50)].count()["student_name"]
+passing_maths_count = school_data_complete[(school_data_complete["maths_score"] >= 50)]["student_name"].count()
 passing_maths_percentage = passing_maths_count / float(student_count) * 100
 
 area_summary = pd.DataFrame(    # scalar 변수들을 dictionary로 묶어서 다시 DataFrame을 만들때는 List에 담아서 바꾼다.
