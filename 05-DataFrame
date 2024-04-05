@@ -99,5 +99,10 @@ grouped_df = df.groupby(["LOCAL_GOVERNMENT_NAME", "SURFACE"])                   
 grouped_df.count()                                                              # 나머지 컬럼을 전부 count 한다.
 grouped_df[["NUMBER_OF_BINS", "NUMBER_OF_TOILETS", "NUMBER_OF_TABLES"]].sum()   # 세개의 컬럼을 sum 한다. 
 
+# group by multi column 하면서 aggregate function을 쓰는 것을 한줄에 하기
+# select "LOCAL_GOVERNMENT_NAME", "SURFACE", sum("NUMBER_OF_BINS"), sum("NUMBER_OF_TOILETS"), sum("NUMBER_OF_TABLES") from TAB group by "LOCAL_GOVERNMENT_NAME", "SURFACE"
+grouped_df = df.groupby(["LOCAL_GOVERNMENT_NAME", "SURFACE"])[["NUMBER_OF_BINS", "NUMBER_OF_TOILETS", "NUMBER_OF_TABLES"]].sum()     
+
+
 lg_toilets = grouped_df["NUMBER_OF_TOILETS"].sum()                              # 각각의 group by 결과를 각각의 Series로 만
 lg_tables = grouped_df["NUMBER_OF_TABLES"].sum()
