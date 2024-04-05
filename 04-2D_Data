@@ -80,6 +80,17 @@ school_type = df.set_index(["school_name", "loc_name"])["type"]
 school_budget = df.set_index(["school_name", "loc_name"])["budget"]
 
 
+<<-------------- 계산을 하면서 Series을 DataFrame으로 변환 -------------->>
+school_data dataFrame에 "school_name", "budget", "size" 컬럼이 있고 새로운 compute 컬럼 "per_school_capita"을 계산하면서 "school_name"을 key컬럼으로 지정
+
+per_school_capita = pd.DataFrame(
+                                {
+                                "per_school_capita": school_data["budget"]/school_data["size"]
+                                },
+                                index=school_data["school_name"]
+                                )
+
+
 <<-------------- 계산이 끝난 여러 Series들을 DataFrame으로변환 -------------->>
 base, base_norm ===> Pandas Series
 
