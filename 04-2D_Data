@@ -64,6 +64,16 @@ col['2013-10-16']     ====> 19.26       #키 값으로 data access가 가능하�
 
 <<-------------- 계산이 끝난 여러 Series들을 DataFrame으로변환 -------------->>
 base, base_norm ===> Pandas Series
+
+1. pandas conat 이용
 base_df = pd.concat([base, base_norm], axis=1)
 base_df.columns = ['close', 'normalised']                                            # 컬럼 rename 방법1
 base_ren_df = base_df.rename(columns={"Date of publication":"Publication Year"} )    # 컬럼 rename 방법2
+
+2. Series가 동일한 Key값을 가질때 List를 이용
+data = {
+        "Date of publication" : base,
+        "Publication Year"    : base_norm
+}
+
+base_df = pd.DataFrame(data)
