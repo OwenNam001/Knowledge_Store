@@ -48,6 +48,8 @@ group_one_df.iloc[1:3] ===>                    # Slicing:부분 access
 2  Susan
 
 <<-------------- One Dictionary를 List에 담지 않고 바로 DataFrame으로 변환하면 error발생한다.  -------------->>
+여기서 author_count, country_count, earliest_year, latest_year가 그냥 숫자 (scalar value)인 경우는 에러가 발생
+여기서 author_count, country_count, earliest_year, latest_year가 동일한 key값을 가지는 Series이면 에러가 발생하지 않는다.
 summary_df = pd.DataFrame({
                            "Total Unique Authors": author_count,
                            "Total Unique Publication Countries": country_count,
