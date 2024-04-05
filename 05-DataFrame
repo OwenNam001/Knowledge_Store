@@ -22,6 +22,9 @@ df.loc[(df["Threatened status"] == "Vulnerable") & (df["Common Name"] == "Southe
 # select * from TAB where "Threatened status" = "Vulnerable" OR "Common Name" = "Southern Elephant Seal"   
 df.loc[(df["Threatened status"] == "Vulnerable") & (df["Common Name"] == "Southern Elephant Seal"), :]
 
+# groupby나 set_index를 통해서 두개 이상의 multiindex일 경우
+lg_issues_df.loc[('Ashburton', 'Surfaced'), "NUMBER_OF_TOILETS"]
+
 2. DataFrame Join
 # info_df와 item_df 두개의 DataFrame을 customer_id, order_id 컬럼으로 
 pd.merge(info_df, item_df, on=["customer_id", "order_id"], how="inner")     # inner join
@@ -86,7 +89,7 @@ base_ren_df = base_df.rename(columns={"Date of publication":"Publication Year"} 
 bugs_df["Filing Date"] = bugs_df["Filing Date"].astype("datetime64")
 bugs_df["Year"] = bugs_df["Filing Date"].dt.year
 
-10. Group by 
+10. Group by object를 만들고 aggregate function을 써서 dataFrame을 만들면, Group by 컬럼이 자동적으로 index컬럼이 된다.
 df["LOCAL_GOVERNMENT_NAME"].value_counts()     # select "LOCAL_GOVERNMENT_NAME", count(*) from TAB group by "LOCAL_GOVERNMENT_NAME"
 
 grouped_df = df.groupby(["LOCAL_GOVERNMENT_NAME", "SURFACE"])                   # "LOCAL_GOVERNMENT_NAME", "SURFACE" group by 컬럼을 주고
