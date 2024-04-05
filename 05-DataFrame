@@ -22,6 +22,9 @@ df.loc[(df["Threatened status"] == "Vulnerable") & (df["Common Name"] == "Southe
 # select * from TAB where "Threatened status" = "Vulnerable" OR "Common Name" = "Southern Elephant Seal"   
 df.loc[(df["Threatened status"] == "Vulnerable") & (df["Common Name"] == "Southern Elephant Seal"), :]
 
+# select count("student_name") from TAB where "reading_score" >= 50  DataFrame에 특정컬럼의 aggregate function을 쓸 때, where절을 쓰는 방법
+df[(df["reading_score"] >= 50)]["student_name"].count()
+
 # groupby나 set_index를 통해서 두개 이상의 multiindex일 경우
 lg_issues_df.loc[('Ashburton', 'Surfaced'), "NUMBER_OF_TOILETS"]
 
