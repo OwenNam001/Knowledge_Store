@@ -83,6 +83,12 @@ school_budget = df.set_index(["school_name", "loc_name"])["budget"]
 <<-------------- 계산을 하면서 Series을 DataFrame으로 변환 -------------->>
 school_data dataFrame에 "school_name", "budget", "size" 컬럼이 있고 새로운 compute 컬럼 "per_school_capita"을 계산하면서 "school_name"을 key컬럼으로 지정
 
+< aggregate function이 없을때, 데이터 레벨의 변화가 없을때, 새로운 compute column명을 "per_school_capita" 로 준다.  >
+1) DataFrame에서 set_index 컬럼을 지정하면서 새로 만드는 방법
+per_school_budget = school_data.set_index(["school_name"])[["budget", "size"]]
+per_school_budget = per_school_budget["budget"] / per_school_budget["size"]
+
+2) Dictionary 이용하는 방법
 per_school_capita = pd.DataFrame(
                                 {
                                 "school_name": school_data["school_name"],    
@@ -90,6 +96,11 @@ per_school_capita = pd.DataFrame(
                                 }
                                 )
 per_school_capita.set_index(["school_name"])
+
+< aggregate function이 있을때, 데이터 레벨의 변화가 있을때, 새로운 compute column명을 "passing_maths_counts" 로 준다. >
+school_passing_maths = school_data_complete[school_data_complete["maths_score"] >= 50][["school_name","student_name"]]
+per_school_passing_maths = school_passing_maths.groupby("school_name")["student_name"].count().reset_index(name="passing_maths_counts")
+
 
 
 <<-------------- 계산이 끝난 여러 Series들을 DataFrame으로변환 -------------->>
