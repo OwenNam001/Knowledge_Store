@@ -118,4 +118,4 @@ data = {
         "Publication Year"    : base_norm
 }
 
-base_df = pd.DataFrame(data)
+base_df = pd.DataFrame(data),  base_df에 key 컬럼은 자동적으로 담긴다.
