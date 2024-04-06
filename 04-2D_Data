@@ -27,7 +27,7 @@ student_count = student_data["Student ID"].count()
 passing_maths_count = school_data_complete[(school_data_complete["maths_score"] >= 50)]["student_name"].count()
 passing_maths_percentage = passing_maths_count / float(student_count) * 100
 
-area_summary = pd.DataFrame(    # scalar 변수들을 dictionary로 묶어서 다시 DataFrame을 만들때는 List에 담아서 바꾼다.
+area_summary = pd.DataFrame(    # scalar 변수들을 dictionary로 묶어서 다시 DataFrame을 만들때는 List에 담아서 바꾼다. Series를 DataFrame으로 만들때는 리스트를 쓰면 안된다.
                 [{
                 "Total number of unique schools": school_count,
                 "Total Students": student_count,                
@@ -39,7 +39,7 @@ area_summary = pd.DataFrame(    # scalar 변수들을 dictionary로 묶어서 �
 
 
 <<-------------- DataFrame중 컬럼들을 여러 Series로변환 Why? 계산을 가독성있게 편하게 할 수 있다. -------------->>
-1. 반드시 키 컬럼을 지정한다.
+1. 반드시 키 컬럼을 지정한다.   Scalar 값처럼 List [] 를 쓰면 안된다.
 
 data = {
     'Date': ['2013-10-16', '2013-10-17', '2013-10-18'],
@@ -84,11 +84,12 @@ school_budget = df.set_index(["school_name", "loc_name"])["budget"]
 school_data dataFrame에 "school_name", "budget", "size" 컬럼이 있고 새로운 compute 컬럼 "per_school_capita"을 계산하면서 "school_name"을 key컬럼으로 지정
 
 < aggregate function이 없을때, 데이터 레벨의 변화가 없을때, 새로운 compute column명을 "per_school_capita" 로 준다.  >
-1) DataFrame에서 set_index 컬럼을 지정하면서 새로 만드는 방법
-per_school_budget = school_data.set_index(["school_name"])[["budget", "size"]]
-per_school_budget = per_school_budget["budget"] / per_school_budget["size"]
+1) DataFrame에서 set_index 컬럼을 지정하면서 각각의 Series로 만들어 Series끼리 계산하면 자동적으로 key값 matching해서 계산한다.
+per_school_budget = school_data.set_index(["school_name"])["budget"]
+per_school_counts = school_data.set_index(["school_name"])["size"]
+per_school_capita = per_school_budget / per_school_counts
 
-2) Dictionary 이용하는 방법
+2) Dictionary 이용하는 방법. Scalar 값처럼 List [] 를 쓰면 안된다.   
 per_school_capita = pd.DataFrame(
                                 {
                                 "school_name": school_data["school_name"],    
@@ -111,7 +112,7 @@ base_df = pd.concat([base, base_norm], axis=1)
 base_df.columns = ['close', 'normalised']                                            # 컬럼 rename 방법1
 base_ren_df = base_df.rename(columns={"Date of publication":"Publication Year"} )    # 컬럼 rename 방법2
 
-2. Series가 동일한 Key값을 가질때 List를 이용
+2. Series가 동일한 Key값을 가질때 List를 이용. Scalar 값처럼 List [] 를 쓰면 안된다.
 data = {
         "Date of publication" : base,
         "Publication Year"    : base_norm
