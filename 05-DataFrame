@@ -108,7 +108,6 @@ grouped_df = df.groupby(["LOCAL_GOVERNMENT_NAME", "SURFACE"])[["NUMBER_OF_BINS",
 capomulin_data = mouse_study_results_clean.loc[(mouse_study_results_clean["Drug Regimen"] == "Capomulin"), ["Mouse ID", "Tumor Volume (mm3)", "Weight (g)"]]
 capomulin_avg_tumor = capomulin_data.groupby(["Weight (g)", "Mouse ID"])["Tumor Volume (mm3)"].mean().reset_index(name="avg(Tumor)")
 
-
 12. aggreate function에서 compute column을 새로운 컬럼명을 주면서 having 을 쓰는 것
 # select "Mouse ID","Timepoint", count(*) as Count from TAB group by "Mouse ID","Timepoint" having count(*) > 1
 grouped = mouse_study_results.groupby(["Mouse ID","Timepoint"]).size()
