@@ -103,7 +103,7 @@ grouped_df[["NUMBER_OF_BINS", "NUMBER_OF_TOILETS", "NUMBER_OF_TABLES"]].sum()   
 # select "LOCAL_GOVERNMENT_NAME", "SURFACE", sum("NUMBER_OF_BINS"), sum("NUMBER_OF_TOILETS"), sum("NUMBER_OF_TABLES") from TAB group by "LOCAL_GOVERNMENT_NAME", "SURFACE"
 grouped_df = df.groupby(["LOCAL_GOVERNMENT_NAME", "SURFACE"])[["NUMBER_OF_BINS", "NUMBER_OF_TOILETS", "NUMBER_OF_TABLES"]].sum()     
 
-11. where 절, multi group by 가 함께 있을 때
+11. where 절, column, group by 가 함께 있을 때는 where절을 DataFrame으로 만들고, column, group by를 결과로 만든다.
 # select "Weight (g)", "Mouse ID", avg("Tumor Volume (mm3)") from TAB where "Drug Regimen" == "Capomulin" group by "Weight (g)", "Mouse ID" 
 capomulin_data = mouse_study_results_clean.loc[(mouse_study_results_clean["Drug Regimen"] == "Capomulin"), ["Mouse ID", "Tumor Volume (mm3)", "Weight (g)"]]
 capomulin_avg_tumor = capomulin_data.groupby(["Weight (g)", "Mouse ID"])["Tumor Volume (mm3)"].mean().reset_index(name="avg(Tumor)")
