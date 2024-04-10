@@ -111,3 +111,7 @@ grouped[grouped > 1].reset_index()["Mouse ID"].unique()       # unique한 "Mouse
 
 lg_toilets = grouped_df["NUMBER_OF_TOILETS"].sum()                              # 각각의 group by 결과를 각각의 Series로 만
 lg_tables = grouped_df["NUMBER_OF_TABLES"].sum()
+
+12. agg 함수를 써서 각종 분석 함수를 쓰는 방법
+summary_statistics = mouse_study_results.groupby('Drug Regimen')['Tumor Volume (mm3)'].agg(['mean', 'median', 'var', 'std', 'sem'])
+summary_statistics
