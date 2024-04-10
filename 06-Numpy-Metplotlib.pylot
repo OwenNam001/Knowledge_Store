@@ -1,23 +1,32 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-plt.plot(x, y)                                   # list, numpy array, pandas.Series가 올 수 있다. DataFrame은 안된다.    
+<< Plot bar chart using DataFrame.plot() >>
+study_count_df = pd.DataFrame(mouse_study_results_clean.groupby(["Drug Regimen"])[["Mouse ID", "Timepoint"]].size().reset_index(name="Number of rows"))
+study_count_sorted_df = study_count_df.sort_values(["Number of rows"], ascending=False)
+study_count_sorted_df.plot(kind="bar", x="Drug Regimen", y="Number of rows", legend=False)
 
-< 한 개의 함수를 한번에 그리기 >
-x_axis = np.arange(0, 5, 0.1)                    # 독립변수 list, numpy array, pandas.Series 등 순차적 데이터 타입
-e_x = [np.exp(x) for x in x_axis]                # 종속변수 list, numpy array, pandas.Series 등 순차적 데이터 타입
+plt.xlabel("Drug Regimen")
+plt.ylabel("# of Observed Mouse Timepoints")
 
-plt.xlabel('Time With MatPlotLib')
-plt.ylabel('How Cool MatPlotlib Seems')
-plt.plot(x_axis, e_x)
+plt.show()
 
-< 두 개의 함수를 한번에 그리기 >
-x_axis = np.arange(0, 6, 0.1)
-sin = np.sin(x_axis)
-cos = np.cos(x_axis)
+<< Plot bar chart using DataFrame.plot() >>
+study_count_df = pd.DataFrame(mouse_study_results_clean.groupby(["Drug Regimen"])[["Mouse ID", "Timepoint"]].size().reset_index(name="Number of rows"))
+study_count_sorted_df = study_count_df.sort_values(["Number of rows"], ascending=False)
+study_count_sorted_df.plot(kind="bar", x="Drug Regimen", y="Number of rows", legend=False)
 
-plt.plot(x_axis, sin)
-plt.plot(x_axis, cos)
+x_axis = np.arange(len(study_count_sorted_df["Drug Regimen"]))
+y_axis = study_count_sorted_df["Number of rows"]
 
-plt.show()                                      # graph 그리기
+plt.bar(x_axis, y_axis, alpha=1, align="center")
+tick_locations = [value for value in x_axis]
+plt.xticks(tick_locations, study_count_sorted_df["Drug Regimen"])
 
+plt.xlim(-0.9, len(x_axis)-0.1)
+plt.ylim(0, max(y_axis)+10)
+
+plt.xlabel("Drug Regimen")
+plt.ylabel("# of Observed Mouse Timepoints")
+
+plt.show()
