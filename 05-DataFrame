@@ -107,7 +107,7 @@ grouped_df = df.groupby(["LOCAL_GOVERNMENT_NAME", "SURFACE"])[["NUMBER_OF_BINS",
 # select "Mouse ID","Timepoint", count(*) as Count from TAB group by "Mouse ID","Timepoint" having count(*) > 1
 grouped = mouse_study_results.groupby(["Mouse ID","Timepoint"]).size()
 grouped[grouped > 1].reset_index(name="Count")
-
+grouped[grouped > 1].reset_index()["Mouse ID"].unique()       # unique한 "Mouse ID"만 list up하기
 
 lg_toilets = grouped_df["NUMBER_OF_TOILETS"].sum()                              # 각각의 group by 결과를 각각의 Series로 만
 lg_tables = grouped_df["NUMBER_OF_TABLES"].sum()
