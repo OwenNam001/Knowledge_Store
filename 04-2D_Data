@@ -105,7 +105,7 @@ per_school_passing_maths = school_passing_maths.groupby("school_name")["student_
 # select "Mouse ID","Timepoint", count(*) as Count from TAB group by "Mouse ID","Timepoint" having count(*) > 1
 grouped = mouse_study_results.groupby(["Mouse ID","Timepoint"]).size()
 grouped[grouped > 1].reset_index(name="Count")
-
+grouped[grouped > 1].reset_index()["Mouse ID"].unique()       # unique한 "Mouse ID"만 list up하기
 
 <<-------------- 계산이 끝난 여러 Series들을 DataFrame으로변환 -------------->>
 base, base_norm ===> Pandas Series
