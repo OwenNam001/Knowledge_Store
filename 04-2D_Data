@@ -102,6 +102,9 @@ per_school_capita.set_index(["school_name"])
 school_passing_maths = school_data_complete[school_data_complete["maths_score"] >= 50][["school_name","student_name"]]
 per_school_passing_maths = school_passing_maths.groupby("school_name")["student_name"].count().reset_index(name="passing_maths_counts")
 
+# select "Mouse ID","Timepoint", count(*) as Count from TAB group by "Mouse ID","Timepoint" having count(*) > 1
+grouped = mouse_study_results.groupby(["Mouse ID","Timepoint"]).size()
+grouped[grouped > 1].reset_index(name="Count")
 
 
 <<-------------- 계산이 끝난 여러 Series들을 DataFrame으로변환 -------------->>
