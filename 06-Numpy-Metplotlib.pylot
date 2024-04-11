@@ -19,6 +19,7 @@ plt.plot(x_axis_data, fahrenheit_point)
 # Draw a horizontal line with 0.25 transparency
 plt.hlines(0, 0, 10, alpha=0.25)
 
+# Multiple line을 그릴때는 handles를 이용한다.
 sine_handle, = plt.plot(x_axis, sin, marker='o', color='blue', label="Sine")
 cosine_handle, = plt.plot(x_axis, cos, marker='^', color='red', label="Cosine")
 plt.legend(handles=[sine_handle, cosine_handle], loc="lower right")
