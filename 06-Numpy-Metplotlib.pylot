@@ -29,12 +29,14 @@ plt.show()
 << Plot bar chart using DataFrame.plot() >>
 study_count_df = pd.DataFrame(mouse_study_results_clean.groupby(["Drug Regimen"])[["Mouse ID", "Timepoint"]].size().reset_index(name="Number of rows"))
 study_count_sorted_df = study_count_df.sort_values(["Number of rows"], ascending=False)
-study_count_sorted_df.plot(kind="bar", x="Drug Regimen", y="Number of rows", legend=False)
+study_count_sorted_df.plot(kind="bar", x="Drug Regimen", y="Number of rows", figsize=(6,5), legend=False)
 
+plt.title("Average Rain Per City")
 plt.xlabel("Drug Regimen")
 plt.ylabel("# of Observed Mouse Timepoints")
 
 plt.show()
+plt.tight_layout()
 
 << Plot bar chart using DataFrame.plot() >>
 study_count_df = pd.DataFrame(mouse_study_results_clean.groupby(["Drug Regimen"])[["Mouse ID", "Timepoint"]].size().reset_index(name="Number of rows"))
@@ -44,9 +46,10 @@ study_count_sorted_df.plot(kind="bar", x="Drug Regimen", y="Number of rows", leg
 x_axis = np.arange(len(study_count_sorted_df["Drug Regimen"]))
 y_axis = study_count_sorted_df["Number of rows"]
 
-plt.bar(x_axis, y_axis, alpha=1, align="center")
+plt.figure(figsize=(8,5))
+plt.bar(x_axis, y_axis, color="r" alpha=0.5, align="center")
 tick_locations = [value for value in x_axis]
-plt.xticks(tick_locations, study_count_sorted_df["Drug Regimen"])
+plt.xticks(tick_locations, study_count_sorted_df["Drug Regimen"], rotation="verticals")
 
 plt.xlim(-0.9, len(x_axis)-0.1)
 plt.ylim(0, max(y_axis)+10)
