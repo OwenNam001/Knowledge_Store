@@ -1,6 +1,31 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+<< Plot line chart >>
+x_axis_data = np.arange(1,13,1)
+points = [26.1, 25.3, 22.5, 20.6, 17.3, 14.5, 13.5, 15.8, 17.9, 19.2, 20.3, 24.7]
+fahrenheit_point = [round(celcius * 9/5 + 32,1) for celcius in points]
+
+plt.xlabel('X Axis Label')  # Replace 'X Axis Label' with your actual x-axis label
+plt.ylabel('Temperature')
+plt.title('Temperature Comparison')
+plt.xlim(0, 10)
+plt.ylim(-1, 1)
+plt.grid()
+
+plt.plot(x_axis_data, points) 
+plt.plot(x_axis_data, fahrenheit_point)
+
+# Draw a horizontal line with 0.25 transparency
+plt.hlines(0, 0, 10, alpha=0.25)
+
+sine_handle, = plt.plot(x_axis, sin, marker='o', color='blue', label="Sine")
+cosine_handle, = plt.plot(x_axis, cos, marker='^', color='red', label="Cosine")
+plt.legend(handles=[sine_handle, cosine_handle], loc="lower right")
+
+plt.savefig("../Images/lineConfig.png")
+plt.show()
+
 << Plot bar chart using DataFrame.plot() >>
 study_count_df = pd.DataFrame(mouse_study_results_clean.groupby(["Drug Regimen"])[["Mouse ID", "Timepoint"]].size().reset_index(name="Number of rows"))
 study_count_sorted_df = study_count_df.sort_values(["Number of rows"], ascending=False)
@@ -30,3 +55,24 @@ plt.xlabel("Drug Regimen")
 plt.ylabel("# of Observed Mouse Timepoints")
 
 plt.show()
+
+
+<< Plot pie chart using pyplot >>
+labels = ["Humans", "Smurfs", "Hobbits", "Ninjas"]
+sizes = [220, 95, 80, 100]
+colours = ["red", "orange", "lightcoral", "lightskyblue"]
+explode = (0.1, 0, 0, 0)
+plt.pie(sizes, explode=explode, labels=labels, colors=colours, autopct="%1.1f%%", shadow=True, startangle=140)
+plt.axis("equal")
+plt.show()
+
+
+<< Scatter plot chart using pyplot >>
+x_limit = 100
+x_axis = np.arange(0, x_limit, 1)
+data = [random.random() for value in x_axis]
+plt.scatter(x_axis, data, marker="o", facecolors="red", edgecolors="black", s=x_axis, alpha=0.75)
+plt.ylim(0, 1)
+plt.xlim(0, x_limit)
+plt.show()
+
