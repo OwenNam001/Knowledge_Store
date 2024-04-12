@@ -34,7 +34,7 @@ info_df.plot(kind="pie", labels=info_df['name'], y="salary", autopct='%1.1f%%', 
 
 4) scatter plot chart
 info_df.reset_index().plot(kind='scatter')                                          # x, y를 주지 않으면 에러가 발생함
-info_df.reset_index().plot(kind='scatter', x='customer_id', y='salary')             # x, y를 무조건 줘야 한다. x,y는 index를 포함해서 numeric, string 모두 올 수 있다.
+info_df.reset_index().plot(kind='scatter', x="name", y="email")                     # x, y를 무조건 줘야 한다. x,y는 index를 포함해서 numeric, string 모두 올 수 있다.
 
 
 << Plot line chart >>
