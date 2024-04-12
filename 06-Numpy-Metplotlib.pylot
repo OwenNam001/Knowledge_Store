@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
- << 1. DataFrame.plot()을 이용 >>
+ << 1. Pandas 이용, dataFrame.plot(), Series.plot() 둘다 가능함 >>
 기본적으로 dataFrame의 index가 x-axis가 된다.
 info_df = pd.DataFrame (
                     {
@@ -53,6 +53,7 @@ plt.plot(info_df["name"], info_df["salary"], marker="o", color="red", linewidth=
 2) bar chart
 plt.figure(figsize=(8,5))
 plt.bar(info_df["name"], info_df["email"],  color='blue', alpha=0.7)          # 인자를 두개를 줘야 한다. 첫번재가 x, 두번째가 y가 된다.
+plt.bar(info_df.index, info_df.values,  color='blue', alpha=0.7)              # 인자를 두개를 줘야 한다. 첫번재가 x, 두번째가 y가 된다.
 plt.xticks(rotation="vertical")                                               # x-axis label을 다른 이름으로 변경하거나, horizontal로 회전하려면 pyplot xticks를 이용해야 한다.
 
 3) pie chart    << labels와 y를 줘야 한다. >>
