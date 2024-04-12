@@ -101,6 +101,7 @@ per_school_capita = pd.DataFrame(
 per_school_capita.set_index(["school_name"])
 
 < aggregate function이 있을때, 데이터 레벨의 변화가 있을때, 새로운 compute column명을 "passing_maths_counts" 로 준다. >
+< reset_index를 안하면 groupby 컬럼이 index가 되는 series가 만들어지고, reset_index를 하면 index 컬럼이 새로 만들어지면서 dataFrame이 만들어진다.>
 school_passing_maths = school_data_complete[school_data_complete["maths_score"] >= 50][["school_name","student_name"]]
 per_school_passing_maths = school_passing_maths.groupby("school_name")["student_name"].count().reset_index(name="passing_maths_counts")
 
