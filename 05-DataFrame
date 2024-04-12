@@ -120,3 +120,9 @@ lg_tables = grouped_df["NUMBER_OF_TABLES"].sum()
 13. agg 함수를 써서 각종 분석 함수를 쓰는 방법
 summary_statistics = mouse_study_results.groupby('Drug Regimen')['Tumor Volume (mm3)'].agg(['mean', 'median', 'var', 'std', 'sem'])
 summary_statistics
+
+14.dtype을 이용한 명령어
+info_df.dtypes
+info_df.select_dtypes(include=np.number)                            # dataFrame의 number형 컬럼을 모두 list하기
+combined_travel_df.select_dtypes(include=np.number).mean()          # dataFrame의 number형 컬럼을 모두 mean()구하기
+info_df["bonus"] = info_df["bonus"].astype(str)                     # dataFrame의 datatype을 바꾸기
