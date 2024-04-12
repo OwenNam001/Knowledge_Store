@@ -76,6 +76,7 @@ plt.title('Temperature Comparison')
 plt.xlim(0, 10)  또는 plt.xlim(-0.9, len(x_axis)-0.1)
 plt.ylim(-1, 1)  또는 plt.ylim(0, max(y_axis)+10)
 plt.grid()
+plt.tight_layout()
 
 # Draw a horizontal line with 0.25 transparency
 plt.hlines(0, 0, 10, alpha=0.25)
