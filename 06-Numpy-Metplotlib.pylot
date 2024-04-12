@@ -66,7 +66,7 @@ plt.pie(info_df["salary"], labels=info_df["name"], colors=colours, explode=explo
 plt.axis("equal")                                                                                  # 원형으로 만듬  
 
 4) scatter plot chart
-plt.scatter(info_df["salary"], info_df.index, color='blue', alpha=0.5)                    # x, y를 무조건 줘야 한다. x,y는 index를 포함해서 numeric, string 모두 올 수 있다.
+plt.scatter(info_df["salary"], info_df.index, marker="o", s=30, color='blue', alpha=0.5)                    # x, y를 무조건 줘야 한다. x,y는 index를 포함해서 numeric, string 모두 올 수 있다.
 
 
 << 3. Aesthetics >>
