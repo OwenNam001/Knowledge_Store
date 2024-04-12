@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 
  << 1. Pandas 이용, dataFrame.plot(), Series.plot() 둘다 가능함 >>
@@ -92,9 +93,24 @@ plt.show()
 
 
 
-<< Plot bar chart using DataFrame.plot() >>
-study_count_df = pd.DataFrame(mouse_study_results_clean.groupby(["Drug Regimen"])[["Mouse ID", "Timepoint"]].size().reset_index(name="Number of rows"))
-study_count_sorted_df = study_count_df.sort_values(["Number of rows"], ascending=False)
-study_count_sorted_df.plot(kind="bar", x="Drug Regimen", y="Number of rows", legend=False)
+<< 6. Multiindex일때는 reset_index를 이용해서 DataFrame으로 다시 만든 이후 pandas를 이용한다. >>
+# Generate a new dataFrame for "Capomulin" Regimen
+capomulin_data = mouse_study_results_clean.loc[(mouse_study_results_clean["Drug Regimen"] == "Capomulin"), ["Mouse ID", "Tumor Volume (mm3)", "Weight (g)"]]
 
+# Calculate average tumor volume for each ["Weight (g)", "Mouse ID"]
+capomulin_avg_tumor = capomulin_data.groupby(["Weight (g)", "Mouse ID"])["Tumor Volume (mm3)"].mean().reset_index(name="avg(Tumor)")  # reset_index(name="avg(Tumor)") 이걸하면 dataFrame으로 만들어진다.
 
+# set x_axis with Weight (g)
+x_axis = capomulin_avg_tumor["Weight (g)"]
+
+# set y_axis with average observed tumor volume
+data = capomulin_avg_tumor["avg(Tumor)"]
+
+# Generate a scatter plot with pyplot
+plt.scatter(x_axis, data, marker="o", s=x_axis*2, alpha=1)
+
+# set chart labels and a title
+plt.xlabel("Weight (g) ")
+plt.ylabel("Average Tumor Volume (mm3)")
+
+plt.show()
