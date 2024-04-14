@@ -1,5 +1,9 @@
 1. 데이터 Access
 
+tumor_volumes[tumor_volumes<40]                    
+1) tumor_volumes이 Pandas Series일때, 40보다 작은 row만 return
+2) tumor_volumes이 dataFrame일때, 전체 row를 return하면서 40보다 작으면 숫자를, 아니면 null을 return함
+
 df.iloc[3:5]                                        # integer locatin으로 찾음 3 location row (header제외), 5 location column
 df.iloc[3:5, 2], df.iloc[2:4, 0:4]                  # slicing 
 df.iloc[2:, :4]                                     # row: 2 ~ , column: ~ 4
