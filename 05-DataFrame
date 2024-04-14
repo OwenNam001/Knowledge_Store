@@ -10,9 +10,11 @@ df.loc[:, "Family"],                                # Select all rows for select
 df.loc[:, ["Family", "Threatened status"]]          # Select all rows for selected columns 
 
 df["Family"] == "leonina"                           # select "Family", decode("Family", "leonina", True, False) form TAB
-
 df = df.set_index('Species')                        # Species라는 컬럼을 index 컬럼으로 지정함
-df.loc["leonina", "Family"]                         # select "Family" from TAB where Species = "leonina"
+
+df.loc["leonina", "Family"]                         # select "Family" from TAB where Species = "leonina" ====> Pandas Series로 뽑는다.
+df.loc["leonina", ["Family"]]                       # select "Family" from TAB where Species = "leonina" ====> DataFrame으로 뽑는다.
+
 df.loc[(df["Threatened status"] == "Vulnerable"), :]  # select * from TAB where "Threatened status" = "Vulnerable"
 df.loc[(df["GDP Values"] > 10000), :]                 # select * from TAB where "GDP Values" > 10000
 
