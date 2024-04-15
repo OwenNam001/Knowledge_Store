@@ -1,1 +1,25 @@
 
+times = [96,98,100,105,85,88,95,100,101,102,97,98,5]
+fig1, ax1 = plt.subplots()
+ax1.boxplot(times)
+ax1.set_title('Reaction Times at Tennis Batting Cage')
+ax1.set_ylabel('Reaction Time (ms)')
+plt.show()
+
+times.sort()
+
+<< 분위수 >>
+Series.quantile을 이용한다.
+temperatures.quantile([0.5]) ==> median value, mean(average)가 아니다.
+temperatures.quantile([0.25, 0.5, 0.75]) ==> 25%, 50%, 75% 에 해당하는 value
+
+<< IRQ, outlier 구하기 위한 lower_bound, upper_bound 구하기 >>
+quartiles = temperatures.quantile([.25,.5,.75])
+lowerq = quartiles[0.25]
+upperq = quartiles[0.75]
+iqr = upperq-lowerq
+
+lower_bound = lowerq - (1.5*iqr)
+upper_bound = upperq + (1.5*iqr)
+
+
