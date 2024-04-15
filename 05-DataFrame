@@ -42,6 +42,8 @@ pd.merge(info_df, item_df, on=["customer_id", "order_id"], how="right")     # it
 pd.merge(info_df, item_df, on=["customer_id", "order_id"], how="outer")     # 양쪽 full outer join
 
 2. DataFrame Delete rows
+california_data.info()                                     # null값이 있는지 확인하고 data type까지 함게 보여줌
+california_data.isnull().sum()                             # null값이 있는지 확인
 item_df.dropna(how="any", subset=["columnA", "columnB"])   # how="any", columnA나 columnB중 하나라도 "NaN" (NULL)이 있으면 해당 row delete
 item_df.dropna(how="all", subset=["columnA", "columnB"])   # how="all", columnA와 columnB가 모두 "NaN" (NULL)이 있으면 해당 row delete
 item_df.dropna()                                           # 모든 컬럼을 뒤져 NULL이 하나라도 있으면 해당 row를 delete
@@ -136,6 +138,7 @@ summary_statistics = mouse_study_results.groupby('Drug Regimen')['Tumor Volume (
 summary_statistics
 
 14.dtype을 이용한 명령어
+california_data.info()                                                     # null값이 있는지 확인하고 data type까지 함게 보여줌
 info_df.dtypes
 info_df.select_dtypes(include=np.number)                                   # dataFrame의 number형 컬럼을 모두 list하기
 mcols = combined_travel_df.select_dtypes(include=np.number).mean()         # dataFrame의 number형 컬럼을 모두 mean()구하기
