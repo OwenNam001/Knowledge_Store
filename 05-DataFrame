@@ -126,7 +126,8 @@ grouped_df[["NUMBER_OF_BINS", "NUMBER_OF_TOILETS", "NUMBER_OF_TABLES"]].sum()   
 # select "LOCAL_GOVERNMENT_NAME", "SURFACE", sum("NUMBER_OF_BINS"), sum("NUMBER_OF_TOILETS"), sum("NUMBER_OF_TABLES") from TAB group by "LOCAL_GOVERNMENT_NAME", "SURFACE"
 grouped_df = df.groupby(["LOCAL_GOVERNMENT_NAME", "SURFACE"])[["NUMBER_OF_BINS", "NUMBER_OF_TOILETS", "NUMBER_OF_TABLES"]].sum()     
 
-# group by 를 하면서 여러 aggregate function을 쓰는 것을 한줄에 하기
+# group by 를 하면서 여러 컬럼에 여러가지 aggregate function을 쓰는 것을 한줄에 하기
+# select "A", min(B), max(B), sum(C) from TAB group by "A"
 df.groupby('A').agg({'B': ['min', 'max'], 'C': 'sum'})
 
 11. where 절, column, group by 가 함께 있을 때는 where절을 DataFrame으로 만들고, column, group by를 결과로 만든다.
