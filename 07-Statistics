@@ -42,5 +42,5 @@ plt.annotate(line_eq,(x_axis.mean(), min(data)),fontsize=15,color="red")
 plt.xlabel('Rooms in House')
 plt.ylabel('Median House Prices ($100,000)')
 plt.show()
-
+  
 
