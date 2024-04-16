@@ -2,6 +2,13 @@
 1. 2D이기 때문에 컬럼명과 location을 이용한 데이터 access가 가능해야 한다. multi-pair dictionary를 담은 List나 DataFrame을 이용한다.
 2. Dictionary를 DataFrame으로 바꿀때는 List []에 일단 담아서 바꾼다. why? Dictionary는 자체적으로 row에 대한 location이 없기 때문이다. (03-1D_List_to_Others의 One Dictionary를..... 을 본다.)
 
+<< 어떤 Data type인지, list인지 dataFrame인지 Series, dictionary 인지 등을 알 수 있다. >>
+type(prices), type(prices_dict)
+
+<< 그 안에 어떤 type의 데이터가 있는지 알 수 있다.  >>
+for item in tumor_vol_data:
+    print(f"{item.index} {type(item)}")
+
 <<-------------- multi-pair dictionary를 담은 List -------------->>
 1) 01-Python-DataRead 의 "# 3" 을 본다.
 2) 02-Python-Read-Howto-Use의 "<< 3. 1) 과 2)" 를 본다.
