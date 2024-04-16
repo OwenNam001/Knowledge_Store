@@ -23,3 +23,16 @@ lower_bound = lowerq - (1.5*iqr)
 upper_bound = upperq + (1.5*iqr)
 
 
+<< Correlation coefficient계산하기, Linear regression >>
+# Add the linear regression equation and line to plot
+x_values = san_diego_housing['AveRooms']
+y_values = san_diego_housing['MEDV']
+(slope, intercept, rvalue, pvalue, stderr) = linregress(x_values, y_values)
+regress_values = x_values * slope + intercept
+line_eq = "y = " + str(round(slope,2)) + "x + " + str(round(intercept,2))
+plt.scatter(x_values,y_values)
+plt.plot(x_values,regress_values,"r-")
+plt.annotate(line_eq,(5.8,0.8),fontsize=15,color="red")
+plt.xlabel('Rooms in House')
+plt.ylabel('Median House Prices ($100,000)')
+plt.show()
