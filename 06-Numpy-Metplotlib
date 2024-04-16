@@ -26,6 +26,7 @@ info_df.plot(kind="bar", x="name")                       # x 만을 줄 수 있�
 info_df.plot(kind="bar", y="salary")                     # y 만을 줄 수 있다. y는 index가 아닌 numeric만 올 수 있다. x는 index가 자동적으로 온다.
 info_df.plot(kind="bar", x="name", y="salary")           # x, y를 줄 수 있다. x,y는 index가 아니고, x는 numeric, string다 올 수 있고, y는 numeric만 올 수 있다.
 plt.xticks(rotation="horizontal")                        # x-axis label을 다른 이름으로 변경하거나, horizontal로 회전하려면 pyplot xticks를 이용해야 한다.
+plt.xticks(tick_locations, rain_df["LOCATION"], rotation="vertical")
 
 3) pie chart    << labels와 y를 줘야 한다. >>
 colours = ["red", "orange", "lightcoral", "lightskyblue"]
