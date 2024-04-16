@@ -1,3 +1,10 @@
+<< 어떤 Data type인지, list인지 dataFrame인지 Series, dictionary 인지 등을 알 수 있다. >>
+type(prices), type(prices_dict)
+
+<< 그 안에 어떤 type의 데이터가 있는지 알 수 있다.  >>
+for item in tumor_vol_data:
+    print(f"{item.index} {type(item)}")
+
 1. 데이터 Access
 
 tumor_volumes[tumor_volumes<40]                    
