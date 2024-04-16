@@ -2,8 +2,8 @@
 type(prices), type(prices_dict)
 
 << 그 안에 어떤 type의 데이터가 있는지 알 수 있다.  >>
-for item in tumor_vol_data:
-    print(f"{item.index} {type(item)}")
+for index, item in enumerate(tumor_vol_data):
+    print(f"{index} {type(item)}")
 
 1. 데이터 Access
 
