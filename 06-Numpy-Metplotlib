@@ -76,6 +76,16 @@ plt.axis("equal")                                                               
 4) scatter plot chart
 plt.scatter(info_df["salary"], info_df.index, marker="o", s=30, color='blue', alpha=0.5)                    # x, y를 무조건 줘야 한다. x,y는 index를 포함해서 numeric, string 모두 올 수 있다.
 
+5) box plot
+fig1, ax1 = plt.subplots()
+flierprops = dict(marker='o', markerfacecolor='red', markersize=12, linestyle='none', markeredgecolor='black')
+ax1.boxplot(tumor_vol_data, flierprops=flierprops)
+
+ax1.set_ylabel('Final Tumor Volume (mm3)')
+tick_locations = range(1, len(tumor_vol_data) + 1)
+plt.xticks(tick_locations, treatments_list, rotation="horizontal")
+plt.show()
+
 
 << 3. Aesthetics >>
 
