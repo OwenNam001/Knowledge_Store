@@ -1,1 +1,67 @@
 
+# Dependencies
+import json
+import requests
+from config import api_key
+from pprint import pprint
+
+
+# Load JSON
+filepath = Path("../Resources/video_api_response.json")
+with open(filepath) as jsonfile:
+    video_json = json.load(jsonfile)
+
+이렇게 Jason file을 읽어오면 video_json 는 Dictionary로 생긴다.
+
+# Specify the URL
+url = "https://static.bc-edx.com/data/dla-1-2/m6/lessons/2/request_review.json"
+response = requests.get(url)
+response.status_code
+response_json = response.json()
+pprint(f"The first response is {response_json[0]}")    # pprint는 print보다 좀더 readability가 좋게 출력된다.
+
+<< query_url을 만들고 call >>
+url = "http://api.openweathermap.org/data/2.5/weather?"
+city = "London"
+query_url = url + "appid=" + api_key + "&q=" + city
+
+weather_response = requests.get(query_url)
+weather_json = weather_response.json()
+
+# Get the temperature from the response
+pprint(f"The weather API responded with: {weather_json}")
+
+
+
+# use list of units
+units = ["metric", "imperial"]
+
+# set up list to hold two different temperatures
+temperature = []
+
+# loop through the list of units and append them to temperatures list
+for unit in units:
+    # Build query URL based on current element in units
+    query_url = url + "appid=" + api_key + "&q=" + city + "&units=" + unit
+
+    # Get weather data
+    weather_response = requests.get(query_url)
+    weather_json = weather_response.json()
+
+    # Get temperature from JSON response
+    temp = weather_json["main"]["temp"]
+    temperature.append(temp)
+
+# Report temperatures by accessing each element in the list
+print(f"The temperature in Bujumbura is {temperature[0]} C. or {temperature[1]} F.")
+
+<< Exception Handling >>
+try:
+    print(students["Mary"])
+except KeyError:
+    print("Oops, that key doesn'y exist")
+
+try:
+    print(students["Mary"])
+except Exception as e:
+    print("Oops, that key doesn'y exist")
