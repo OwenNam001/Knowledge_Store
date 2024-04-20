@@ -45,3 +45,14 @@ print(f"The r-squared is: {rvalue**2}")
 plt.show()
   
 
+<< Pearson's Correlation Absolute value r  r<0.3 : None or very weak, 0.3<=r<0.5: Weak, 0.5<=r<0.7: Moderate, r>=0.7: Strong >> 
+import scipy.stats as st
+
+x_values_northern = northern_hemi_df['Lat']
+y_values_northern = northern_hemi_df['Max Temp']
+
+correlation_northern = st.pearsonr(x_values_northern,y_values_northern)
+
+print(f"The correlation between northern hemi. Lat vs Max Temp is {abs(round(correlation_northern[0],2))}")
+
+
