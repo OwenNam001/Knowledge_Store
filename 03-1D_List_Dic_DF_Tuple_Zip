@@ -22,6 +22,11 @@ lngs = np.random.uniform(lng_range[0], lng_range[1], size=1500)
 lat_lngs = zip(lats, lngs)                                        # 갯수가 같은 ndarrary 두개를 zip으로 묶으면 zip이 된다.
 
 zip은 바로 볼 수가 없고, list로 변환해서 보거나, for loop로 바로 출력할 수 있다. 
+
+0) zip으로 변환하면서 바로 List에 담음
+lat_lngs = []
+lat_lngs = zip(lats, lngs)
+
 1) List로 변환
 lat_lngs_list = list(lat_lngs)
 lat_lngs_list
