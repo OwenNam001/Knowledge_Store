@@ -38,9 +38,10 @@ plt.plot(x_values,regress_values,"r-")
 # plt.ylim(min(data) - 10, max(data) + 10)
 
 # linear line plot
-plt.annotate(line_eq,(x_axis.mean(), min(data)),fontsize=15,color="red")
+plt.annotate(line_eq,(45, 10),fontsize=15,color="red")       #45는 x값, 10은 값에 위치해라는 
 plt.xlabel('Rooms in House')
 plt.ylabel('Median House Prices ($100,000)')
+print(f"The r-squared is: {rvalue**2}")
 plt.show()
   
 
