@@ -11,6 +11,25 @@ type(prices), type(prices_dict)
 for index, item in enumerate(tumor_vol_data):
     print(f"{index} {type(item)}")
 
+<<-------------tuple------------------------------------------------------------------->>
+lat_range = (-90, 90)             # tuple을 이용해서 range를 줄 수 있다.
+lng_range = (-90, 90)
+
+
+<<-------------numpy ndarrary------------------------------------------------------------------->>
+lats = np.random.uniform(lat_range[0], lat_range[1], size=1500)   # np.random.uniform(최소, 최대, size=생성갯수) Random 숫자를 생성한다. lats는 np ndarrary
+lngs = np.random.uniform(lng_range[0], lng_range[1], size=1500)
+lat_lngs = zip(lats, lngs)                                        # 갯수가 같은 ndarrary 두개를 zip으로 묶으면 zip이 된다.
+
+zip은 바로 볼 수가 없고, list로 변환해서 보거나, for loop로 바로 출력할 수 있다. 
+1) List로 변환
+lat_lngs_list = list(lat_lngs)
+lat_lngs_list
+
+2) for loop
+for lat, lng in lat_lngs:
+    print(f"{lat} {lng}")
+
 <<-------------- One dimensional List를 key로, scalar를 value로 만드는 방법 -------------->>
 country_count_by_type = {}
 lending_types = ['IBD', 'IDB', 'IDX', 'LNX']
