@@ -35,25 +35,56 @@ pprint(f"The weather API responded with: {weather_json}")
 
 # use list of units
 units = ["metric", "imperial"]
-
 # set up list to hold two different temperatures
 temperature = []
 
+# loop를 돌면서 건건이 json file의 데이터를 dataFrame으로 만드는 과정
 # loop through the list of units and append them to temperatures list
-for unit in units:
-    # Build query URL based on current element in units
-    query_url = url + "appid=" + api_key + "&q=" + city + "&units=" + unit
+for i, city in enumerate(cities):
 
-    # Get weather data
+    # Group cities in sets of 50 for logging purposes
+    if (i % 50 == 0 and i >= 50):
+        set_count += 1
+        record_count = 0
+
+    # Create endpoint URL with each city
+    city_url = url + "appid=" + weather_api_key + "&units=" + units + "&q=" + city  
+
+    # Log the url, record, and set numbers
+    print("Processing Record %s of Set %s | %s" % (record_count, set_count, city))
+
+    # Add 1 to the record count
+    record_count += 1
+
+    # Run an API request for each of the cities
     try:
-        weather_response = requests.get(query_url)
-        weather_json = weather_response.json()
+        # Parse the JSON and retrieve data
+        city_weather = requests.get(city_url).json()
+        
+        # Parse out latitude, longitude, max temp, humidity, cloudiness, wind speed, country, and date
+        city_lat = city_weather['coord']['lat']
+        city_lng = city_weather['coord']['lon']
+        city_max_temp = city_weather['main']['temp_max']
+        city_humidity = city_weather['main']['humidity']
+        city_clouds = city_weather['clouds']['all']
+        city_wind = city_weather['wind']['speed']
+        city_country = city_weather['sys']['country']
+        city_date = city_weather['dt']
 
-        # Get temperature from JSON response
-        temp = weather_json["main"]["temp"]
-        temperature.append(temp)
+        # Append the City information into city_data list
+        city_data.append({"City": city, 
+                          "Lat": city_lat, 
+                          "Lng": city_lng, 
+                          "Max Temp": city_max_temp,
+                          "Humidity": city_humidity,
+                          "Cloudiness": city_clouds,
+                          "Wind Speed": city_wind,
+                          "Country": city_country,
+                          "Date": city_date})
+
+    # If an error is experienced, skip the city
     except:
-        print("Error 내용 표시")
+        print("City not found. Skipping...")
         pass
 
 # Report temperatures by accessing each element in the list
