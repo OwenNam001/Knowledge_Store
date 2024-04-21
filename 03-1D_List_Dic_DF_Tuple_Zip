@@ -11,6 +11,15 @@ type(prices), type(prices_dict)
 for index, item in enumerate(tumor_vol_data):
     print(f"{index} {type(item)}")
 
+<<-------------set------------------------------------------------------------------->>
+# duplicate이 허용되지 않아서 my_set을 찍어보면 8은 하나밖에 없다.
+# index가 없어서 item을 access할 수가 없고 그냥 set으로만 처리할 수 있다.
+# 개별 item에 접근하려면 list로 변경해야 한다.
+my_set = {4,3,8,7,8}                 
+
+my_list = list(my_set)
+my_list[0]
+
 <<-------------tuple------------------------------------------------------------------->>
 lat_range = (-90, 90)             # tuple을 이용해서 range를 줄 수 있다.
 lng_range = (-90, 90)
