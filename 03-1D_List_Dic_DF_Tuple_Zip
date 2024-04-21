@@ -112,3 +112,12 @@ summary_df = pd.DataFrame({
                            "Latest Year": latest_year},
                             index=[0]
                            )  
+
+<<-------------- One Dictionary의 Key와 value를 access하는 방법  -------------->>
+my_dict = {"name": "Kevin Smith", "gender": "male", "age":35 }
+
+for key, value in my_dict.items()
+    print(f"{key} {value}")
+
+for key, value in zip(my_dict.keys(), my_dict.values())
+    print(f"{key} {value}")
