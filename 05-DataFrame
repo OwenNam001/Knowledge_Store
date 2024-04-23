@@ -51,6 +51,7 @@ pd.merge(info_df, item_df, on=["customer_id", "order_id"], how="outer")     # �
 2. DataFrame Delete rows
 california_data.info()                                     # null값이 있는지 확인하고 data type까지 함게 보여줌
 california_data.isnull().sum()                             # null값이 있는지 확인
+item_df["distance"] = np.nan                               # float 형태의 null값으로 초기화 
 item_df.dropna(how="any", subset=["columnA", "columnB"])   # how="any", columnA나 columnB중 하나라도 "NaN" (NULL)이 있으면 해당 row delete
 item_df.dropna(how="all", subset=["columnA", "columnB"])   # how="all", columnA와 columnB가 모두 "NaN" (NULL)이 있으면 해당 row delete
 item_df.dropna()                                           # 모든 컬럼을 뒤져 NULL이 하나라도 있으면 해당 row를 delete
