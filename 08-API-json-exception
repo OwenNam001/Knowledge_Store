@@ -105,7 +105,13 @@ for lending_type in lending_types:
 << Exception Handling >>
 try:
     print(students["Mary"])
-except Exception as e:                     # 모든 에러에서 다 쓰일 수 있다.
+except (KeyError, IndexError):                     # multiple error를 잡을 수 있다.
+    print("Oops, that key doesn'y exist")
+
+
+try:
+    print(students["Mary"])
+except Exception as e:                             # 모든 에러에서 다 쓰일 수 있다.
     print("Oops, that key doesn'y exist")
 
 try:
