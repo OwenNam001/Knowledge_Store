@@ -1,0 +1,47 @@
+target_city = "Sydney, Australia"
+lat = geo_data["results"][0]["lat"]
+lon = geo_data["results"][0]["lon"]
+
+# Geographical coordination가져오기 lat, lon
+target_url = f"https://api.geoapify.com/v1/geocode/search?text={target_city}&format=json&apiKey={geoapify_key}"
+geo_data = requests.get(target_url).json()
+
+# print한번에 여러줄로 print하기 triple "를 사용
+print(f"""" 
+        City: {target_city},
+        Latitude: {lat},
+        Longitude: {lon}
+      """)
+
+
+# Places API
+# Set the geographical coordinates for Sydney, Australia
+latitude = -33.8698439
+longitude = 151.2082848
+
+# Set the parameters for the type of place
+categories = "catering.restaurant"
+conditions = "vegetarian"
+radius = 8000
+
+# Set the parameters for the type of search
+filters = f"circle:{longitude},{latitude},{radius}"
+bias = f"proximity:{longitude},{latitude}"
+limit = 20
+
+# set up a parameters dictionary
+params = {
+    "categories":categories,
+    "conditions":conditions,
+    "limit":limit,
+    "filter":filters,
+    "bias":bias,
+    "apiKey":geoapify_key    
+}
+
+# Set base URL
+base_url = "https://api.geoapify.com/v2/places"
+
+# run a request using our params dictionary
+response = requests.get(base_url, params=params)
+
