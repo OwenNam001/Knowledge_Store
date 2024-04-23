@@ -2,6 +2,7 @@ target_city = "Sydney, Australia"
 lat = geo_data["results"][0]["lat"]
 lon = geo_data["results"][0]["lon"]
 
+# Geocode API
 # Geographical coordination가져오기 lat, lon
 target_url = f"https://api.geoapify.com/v1/geocode/search?text={target_city}&format=json&apiKey={geoapify_key}"
 geo_data = requests.get(target_url).json()
