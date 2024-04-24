@@ -44,8 +44,8 @@ lg_issues_df.loc[('Ashburton', 'Surfaced'), "NUMBER_OF_TOILETS"]
 2. DataFrame Join
 # info_df와 item_df 두개의 DataFrame을 customer_id, order_id 컬럼으로 
 pd.merge(info_df, item_df, on=["customer_id", "order_id"], how="inner")     # inner join
-pd.merge(info_df, item_df, on=["customer_id", "order_id"], how="left")      # info_df를 기준으로 left join
-pd.merge(info_df, item_df, on=["customer_id", "order_id"], how="right")     # item_df를 기준으로 right join
+pd.merge(info_df, item_df, left_on="customer_id", right_on="order_id", how="left")      # info_df를 기준으로 left join
+pd.merge(info_df, item_df, left_on="customer_id", right_on="order_id", how="right")     # item_df를 기준으로 right join
 pd.merge(info_df, item_df, on=["customer_id", "order_id"], how="outer")     # 양쪽 full outer join
 
 2. DataFrame Delete rows
