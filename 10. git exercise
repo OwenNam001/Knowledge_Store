@@ -37,9 +37,9 @@
 - After pulling the updated main branch, each team member should create a new branch on local computer🚨 git checkout -b <name>/<name of feature>
 - Add or change anything you'd like on this branch. 🚨git add . ➡️ git commit -m '<description of the commit>'
 - git push to repository 🚨 git push origin <name>/<name of features>
-- Each team member needs to compare pull request on their github GUI and assign who review
+- Each team member needs to "Compare & pull request" on their github GUI and assign who review
 - On Github there are Pull requests and click on team mate's pull request
-- Looking "File changed" to see the content & Leave a comment on the pull request & approve and merge it
+- Looking "File changed" to see the content & Leave a comment on the request & approve and merge it
 - On local computer, 🚨 git checkout main  >> 🚨git pull
 - Delete in local computer: 🚨 git branch -d <branch name> 
   Delete in Github: 🚨 git push origin -d <branch name>
